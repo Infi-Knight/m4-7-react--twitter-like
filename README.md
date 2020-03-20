@@ -2,7 +2,7 @@
 
 Today, we'll build an over-the-top "like" button, similar to the one found on Twitter.com:
 
-![Twitter like button](./assets/demo.gif)
+![Twitter like button](./__lecture/assets/demo.gif)
 
 While it all happens quickly, there's actually quite a lot going on here! Specifically, we will need 3 distinct animations:
 
@@ -16,7 +16,7 @@ We'll build them in turn :)
 
 Inside the workshop, you'll find a basic React app that loads the following Tweet:
 
-![Initial view](./assets/initial.png)
+![Initial view](./__lecture/assets/initial.png)
 
 Take a few moments to investigate the provided folders and files. This project comes with a decent amount of scaffolding. Be sure to check out the various components (and the files within these directories):
 
@@ -53,7 +53,7 @@ The `index.js` is really just a forwarder. It exports the default export from th
 
 Why not just put the code in `index.js`? Because it's annoying to work with dozens of files all named `index.js`:
 
-![too many files named index.js](./assets/index.png)
+![too many files named index.js](./__lecture/assets/index.png)
 
 This convoluted structure means that we have nice imports, as well as a clear editing experience. But it does mean that adding new components is kind of a pain.
 
@@ -123,7 +123,7 @@ If you look at the `LikeButton` component, you'll notice that it already takes a
 
 By the end of this first exercise, you should have something that looks like this, and can handle toggling the like/retweet buttons on/off:
 
-![Exercise 1 complete](./assets/ex-1-complete.gif)
+![Exercise 1 complete](./__lecture/assets/ex-1-complete.gif)
 
 ## Exercise 2: Popping circle
 
@@ -131,7 +131,7 @@ The first part of the exercise we should tackle is the popping circle. For this,
 
 Here's the effect we're going for, isolated:
 
-![popping circle](./assets/pop-nice.gif)
+![popping circle](./__lecture/assets/pop-nice.gif)
 
 Create a new `PoppingCircle` folder in `sec/components`, and create the following files:
 
@@ -202,9 +202,9 @@ _HINT:_ You can play with the easing to make it feel "poppier". Use https://cubi
 
 _HINT:_ You may notice that the circle disappears too early:
 
-![popping circle](./assets/pop-default.gif)
+![popping circle](./__lecture/assets/pop-default.gif)
 
-In this GIF, the animation is correct, but it disappears so quickly that it's hard to tell!
+In this GIF, the animation is transitioning the right properties, but it disappears so quickly that it's hard to tell!
 
 If you want to animate different properties at different speeds, you can use _multiple keyframe animations_:
 
@@ -228,11 +228,11 @@ const fade = keyframes`
 `;
 
 const Wrapper = styled.div`
-  animation: ${fade} 500ms forwards, ${scale} 300ms forwards;
+  animation: ${scale} 300ms forwards, ${fade} 500ms forwards;
 `;
 ```
 
-Notice how each keyframe animation is given a different speed: `fade` is over 500ms, `scale` is over 300ms. This way the fade-out happens slower than the scaling animation.
+Notice how each keyframe animation is given a different speed: `scale` is over 300ms, `fade` is over 500ms. This way the fade-out happens slower than the scaling animation.
 
 ---
 
@@ -240,7 +240,7 @@ Notice how each keyframe animation is given a different speed: `fade` is over 50
 
 The next step in our animation: A springy, swelling heart:
 
-![Swelling heart](./assets/scale.gif)
+![Swelling heart](./__lecture/assets/scale.gif)
 
 Create a new component, `ScaleIn`. This component should only take 1 prop, `children`. The idea is that we'll be able to use this component on _anything_ we want to scale in:
 
@@ -314,7 +314,7 @@ _HINT:_ Play around with `tension` and `friction` to get the right "springy" fee
 
 Finally, the last part of this animation is the colorful, circular pieces of confetti that pop out of the heart:
 
-![Particle demo](./assets/particles.gif)
+![Particle demo](./__lecture/assets/particles.gif)
 
 There's a few things to notice about this:
 
@@ -325,7 +325,7 @@ There's a few things to notice about this:
 
 We'll eventually create something that meets all these conditions, but for now, let's start a bit simpler. Let's aim to create this:
 
-![Particle step 1](./assets/particles-step-1.gif)
+![Particle step 1](./__lecture/assets/particles-step-1.gif)
 
 In this first example, every particle is uniform in everything except "angle".
 
@@ -356,11 +356,11 @@ Inside `ConfettiPiece`, let's return a red circle, 10px by 10px
 
 We want to solve a problem right off the bat; we want every particle to start in the very center of the heart. If we aren't careful, we'll wind up with a bunch of circles in a line:
 
-![What we DON'T want](./assets/dot-line.png)
+![What we DON'T want](./__lecture/assets/dot-line.png)
 
 So inside `ConfettiPiece`, create a styled wrapper, `CenteredWithinParent`. Your first task is to ensure that every red circle sits stacked one on top of the other, right in the center:
 
-![The positioning we want](./assets/many-stacked-circles.png)
+![The positioning we want](./__lecture/assets/many-stacked-circles.png)
 
 Let's add a few props to `ConfettiPiece`, and render it conditionally, based on whether the tweet is liked:
 
@@ -402,11 +402,11 @@ As a refresher, the thing we need to do is convert between _polar coordinates_ t
 
 Polar coordinates are based on a _direction_ and a _distance_. This tends to be easier for humans to think about, in terms of spreading things out evenly.
 
-![polar coordinates](./assets/polar.png)
+![polar coordinates](./__lecture/assets/polar.png)
 
 Cartesian coordinates are the X/Y values we always deal with in Javascript.
 
-![cartesian coordinates](./assets/cartesian.png)
+![cartesian coordinates](./__lecture/assets/cartesian.png)
 
 Inside `Particle`, we need to convert polar to cartesian. The trigonometry isn't the most exciting thing in the world, so here's the formulas you'll need to convert from one to the other:
 
@@ -423,7 +423,7 @@ Also inside `Particle`, we want to do the animating from start to finish. It's u
 
 At this point, you should see the particles all transitioning from A to B, albeit in lockstep:
 
-![Particle step 1](./assets/particles-step-1.gif)
+![Particle step 1](./__lecture/assets/particles-step-1.gif)
 
 Next, let's add some variety! And this part is left mostly up to you, with some hints.
 
@@ -450,9 +450,11 @@ In your OS settings, set "Prefers reduced motion":
 
 When liking the tweet with this setting enabled, there should be no animations:
 
-![With and without reducing motion](./assets/prefers-reduced.gif)
+![With and without reducing motion](./__lecture/assets/prefers-reduced.gif)
 
-_This is super important._ Whimsical flourishes are wonderful, but not when they come at the expense of a person's health.
+_This is super important._ A surprising number of people have **vestibular disorders.** This is a class of disorder that involves the inner ear and brain. The most common symptom is vertigo, difficulty balancing. For folks with a condition in this category, motion can make them nauseous, produce severe headaches, and cause general malaise. [More information](https://web.dev/prefers-reduced-motion/).
+
+Whimsical flourishes are wonderful, but not when they come at the expense of a person's health.
 
 To accomplish this, we'll need to take advantage of the [prefers-reduced-motion media query](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion). For keyframe-based animations, we can gate our animations like this:
 
@@ -518,7 +520,7 @@ if (shouldReduceMotion) {
 
 ## 1. Swirly colors
 
-![Swirly](./assets/swirly.gif)
+![Swirly](./__lecture/assets/swirly.gif)
 
 Try animating the colors of each particle over time. This can be done in `ConfettiPiece`.
 
@@ -539,7 +541,7 @@ This workshop is all about whimsy. How can we apply these lessons to previous wo
 Some ideas:
 
 1. Add particle effects to the cookie clicker game!
-2. In the last ticket-purchasing workshop, we show an error if the request fails. What if the modal did a head-shake, same as this example from Stripe?
-   ![headshake](./assets/stripe-error.gif)
+2. In the recent ticket-purchasing workshop, we show an error if the request fails. What if the modal did a head-shake, same as this example from Stripe?
+   ![headshake](./__lecture/assets/stripe-error.gif)
 3. In the routing workshop, we show a number of listings. What if they faded in sequentially, like dominos?
 4. Have you seen an effective animation on the web? See if you can recreate it!
