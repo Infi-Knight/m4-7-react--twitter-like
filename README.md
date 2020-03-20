@@ -280,9 +280,11 @@ Inside our `LikeButton` component, we can wrap the `<Heart>` component we have i
 
 Because the animation is springy, we'll use **React Spring** to accomplish it.
 
-Also, because we want the animation to happen on mount, we'll make use of the `from` prop.
+Start by installing the dependency with Yarn: it's `react-spring` on NPM.
 
-As a reminder, here's an example of how React Spring works. It's up to you to figure out how this example can be used for your desired goal.
+Because we want the animation to happen on-mount, we'll make use of the `from` prop.
+
+As a reminder, here's an example of how React Spring works. See if you can work out how to transform this example into the effect you want:
 
 ```js
 import { useSpring, animated } from 'react-spring';
@@ -307,6 +309,49 @@ _HINT:_ Play around with `tension` and `friction` to get the right "springy" fee
 
 - https://chenglou.github.io/react-motion/demos/demo5-spring-parameters-chooser/
 - https://react-spring-visualizer.com/
+
+.
+
+..
+
+...
+
+....
+
+.....
+
+......
+
+.......
+
+......
+
+.....
+
+....
+
+...
+
+..
+
+.
+
+Here's how to accomplish the springy effect:
+
+```js
+const props = useSpring({
+  transform: 'scale(1)',
+  from: {
+    transform: 'scale(0)',
+  },
+  config: {
+    tension: 200,
+    friction: 12,
+  },
+});
+```
+
+Your values might be different for `tension` and `friction`, and that's OK! Pick whichever values you like best =)
 
 ---
 
